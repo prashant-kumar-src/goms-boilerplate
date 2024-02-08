@@ -15,6 +15,9 @@ func InitHttpServer(config *config.Config, logger logger.ILogger,
 	routeRegisterer routeRegisterer,
 	middlewares ...gin.HandlerFunc,
 ) error {
+	// resolve dependencies
+	resolveDependencies()
+
 	r := gin.Default()
 
 	r.GET("/ping", func(c *gin.Context) {
@@ -29,4 +32,9 @@ func InitHttpServer(config *config.Config, logger logger.ILogger,
 	routeRegisterer(r)
 
 	return r.Run(":8080")
+}
+
+func resolveDependencies() {
+	// resolve dependencies
+
 }
